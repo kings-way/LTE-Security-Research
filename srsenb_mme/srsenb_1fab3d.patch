@@ -1,0 +1,20 @@
+diff --git a/srsenb/src/stack/rrc/rrc_ue.cc b/srsenb/src/stack/rrc/rrc_ue.cc
+index 8c16d63a3..8c1ae16e5 100644
+--- a/srsenb/src/stack/rrc/rrc_ue.cc
++++ b/srsenb/src/stack/rrc/rrc_ue.cc
+@@ -1173,6 +1173,16 @@ void rrc::ue::send_connection_release()
+     }
+   }
+ 
++  asn1::rrc::carrier_freqs_geran_s carrier_freqs;
++  carrier_freqs.start_arfcn = 871;
++  carrier_freqs.band_ind = asn1::rrc::band_ind_geran_e(asn1::rrc::band_ind_geran_opts::options::dcs1800);
++  auto& list = carrier_freqs.following_arfcns.set_explicit_list_of_arfcns();
++  list.push_back(871);
++
++  rel_ies.redirected_carrier_info_present = true;
++  rel_ies.redirected_carrier_info.set_geran();
++  rel_ies.redirected_carrier_info.geran() = carrier_freqs;
++
+   std::string octet_str;
+   send_dl_dcch(&dl_dcch_msg, nullptr, &octet_str);

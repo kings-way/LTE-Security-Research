@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# /usr/local/bin/LTE_fdd_enodeb &
+
 TAC=$(( $RANDOM % 65535 ))
 PCI=$(( $RANDOM % 255 ))
 CELL_ID=$(( $RANDOM % 65025 ))

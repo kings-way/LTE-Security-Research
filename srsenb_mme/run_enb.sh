@@ -7,7 +7,7 @@ ARFCN=300
 TX_GAIN=80
 RX_GAIN=50
 
-TAC=$(( $RANDOM % 65535 ))
+TAC=$(printf "0x%x" $(( $RANDOM % 65535 )))
 PCI=$(( $RANDOM % 255 ))
 CELL_ID=$(( $RANDOM % 65025 ))
 

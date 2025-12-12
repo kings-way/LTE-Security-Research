@@ -244,7 +244,7 @@ class parsing:
     # TAU NAS
     def create_NAS_only_TAUReject(cause):
         msg = pycrate_mobile.NAS.EMMTrackingAreaUpdateReject()
-        msg[1].set_val([int.to_bytes(cause)])
+        msg[1].set_val([cause.to_bytes(1, 'big')])
         return msg.to_bytes()
 
     # TAU MSG
